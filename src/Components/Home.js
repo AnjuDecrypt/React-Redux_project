@@ -1,16 +1,17 @@
 import React from 'react'
 import phone from "../asset/iphone9-4.jpg";
 import cart from "../asset/cart.png"
-export default function Home() {
+import { useSelector } from 'react-redux'
+import HeaderContainer from '../Container/HeaderContainer';
+export default function Home(props) {
+    console.log("props",props)
     return (
         <>
             <div className='home'>
                 <div className=''>
                     <h1 className='text-center text-[42px] font-[700] my-[30px]'>Home Components</h1>
-                    <div className='absolute top-[20px] right-[20px]'>
-                    <img src={cart} className='w-[50px] h-[50px]' />
-                    </div>
-                   
+                   <HeaderContainer />
+
                 </div>
                 <div className='border-2 flex justify-evenly items-center w-[800px] m-[auto]'>
                     <div className='my-[20px]'>
@@ -20,9 +21,16 @@ export default function Home() {
                         <span>I-Phone</span>
                         <span>Price: $1000.00</span>
                     </div>
-                    <button className='bg-[#24ACF2] w-[120px] h-[50px] rounded-[10px] text-[#fff]'>Add to Cart</button>
+                    <button onClick={
+                        () => { props.addToCartHandler({ pice: 1000, name: 'i phone 11' }) }
+                    } className='bg-[#24ACF2] w-[120px] h-[50px] rounded-[10px] text-[#fff]'>Add to Cart</button>
+                     <button onClick={
+                        () => { props.removeToCartHandler() }
+                    } className='bg-[#24ACF2] w-[120px] h-[50px] rounded-[10px] text-[#fff]' >Remove to Cart</button>
                 </div>
             </div>
         </>
     )
 }
+
+
